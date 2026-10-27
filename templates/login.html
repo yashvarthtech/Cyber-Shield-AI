@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Log in · CyberShield AI</title><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body><header class="topbar"><a class="brand" href="{{ url_for('login') }}">🛡️ CyberShield <span>AI</span></a><nav><a class="active" href="{{ url_for('login') }}">Log in</a><a href="{{ url_for('register') }}">Create account</a></nav></header>
+<main class="auth-wrap"><section class="panel auth-panel"><p class="eyebrow">WELCOME BACK</p><h1>Log in to CyberShield AI</h1><p class="muted">Access your dashboard and your own scan history.</p>{% with messages = get_flashed_messages(with_categories=true) %}{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endwith %}<form method="post"><label for="username">Username</label><div class="auth-input-wrap"><span class="field-icon" aria-hidden="true">♙</span><input id="username" name="username" type="text" placeholder="Enter your username" required maxlength="30" autocomplete="username"></div><label for="password">Password</label><div class="auth-input-wrap"><span class="field-icon" aria-hidden="true">▣</span><input id="password" name="password" type="password" placeholder="Enter your password" required autocomplete="current-password"><button class="password-toggle" type="button" data-toggle-password="password" aria-label="Show password">Show</button></div><button class="button" type="submit">Log in →</button></form><p class="muted auth-foot">New here? <a class="text-link" href="{{ url_for('register') }}">Create an account</a></p></section></main><script>
+document.querySelectorAll('[data-toggle-password]').forEach(function(button) {
+  button.addEventListener('click', function() {
+    const field = document.getElementById(button.dataset.togglePassword);
+    const showing = field.type === 'password';
+    field.type = showing ? 'text' : 'password';
+    button.textContent = showing ? 'Hide' : 'Show';
+    button.setAttribute('aria-label', showing ? 'Hide password' : 'Show password');
+  });
+});
+</script></body></html>
